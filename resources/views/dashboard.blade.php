@@ -18,8 +18,7 @@
             
             <!-- Content Area -->
             <div class="p-5">
-                <h2 class="text-2xl font-bold">Welcome to Your Dashboard</h2>
-                <p class="mt-2 text-gray-600">Manage your data and settings here.</p>
+                @yield('content')
             </div>
         </div>
     </div>

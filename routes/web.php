@@ -6,8 +6,8 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/student-management', function () {
+    return view('student_management');
 });
 Route::get('/course-management', function () {
     return view('course.course-management');
