@@ -4,6 +4,11 @@
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Home</li>
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Student Managment</li>
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Faculty Managment</li>
+                <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">
+                    <a href="/course-management">
+                        Course Management
+                    </a>
+                </li>
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Logout</li>
             </ul>
         </div>
