@@ -5,7 +5,9 @@
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">
                     <a href="/student-management">Student Managment</a>
                 </li>
-                <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Faculty Managment</li>
+                <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">
+                    <a href="/faculty-management">Faculty Managment</a>
+                </li>
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Logout</li>
             </ul>
         </div>
