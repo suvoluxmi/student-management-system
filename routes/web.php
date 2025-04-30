@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -15,3 +16,5 @@ Route::get('/course-management', function () {
 });
 
 Route::resource('/courses', CourseController::class);
+
+Route::resource('students', StudentController::class);
