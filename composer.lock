@@ -1056,7 +1056,23 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+<<<<<<< HEAD
+            "version": "v12.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "ca0412e978f78ecea0cafbe34dd8b18010064f73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ca0412e978f78ecea0cafbe34dd8b18010064f73",
+                "reference": "ca0412e978f78ecea0cafbe34dd8b18010064f73",
+=======
+            "version": "v12.2.0",
+=======
             "version": "v12.6.0",
+>>>>>>> 5e2d98f41cafb88a658fee417c0d173dd70f97b6
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
@@ -1064,8 +1080,14 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2fb06941bc69ea92f28b2888535ab144ee006889",
+                "reference": "2fb06941bc69ea92f28b2888535ab144ee006889",
+>>>>>>> 05dbeedaf458f7150db90fca1f8deb4e13d68410
+=======
                 "url": "https://api.github.com/repos/laravel/framework/zipball/0219fdf28b749460e2f9ebd4e283a00d58b8f758",
                 "reference": "0219fdf28b749460e2f9ebd4e283a00d58b8f758",
+>>>>>>> 5e2d98f41cafb88a658fee417c0d173dd70f97b6
                 "shasum": ""
             },
             "require": {
@@ -1267,7 +1289,15 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+<<<<<<< HEAD
+            "time": "2025-03-18T13:49:19+00:00"
+=======
+            "time": "2025-03-12T14:38:20+00:00"
+>>>>>>> 05dbeedaf458f7150db90fca1f8deb4e13d68410
+=======
             "time": "2025-04-02T16:25:03+00:00"
+>>>>>>> 5e2d98f41cafb88a658fee417c0d173dd70f97b6
         },
         {
             "name": "laravel/prompts",
