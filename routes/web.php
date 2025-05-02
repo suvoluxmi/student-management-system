@@ -25,3 +25,7 @@ Route::get('/course-management', function () {
 Route::resource('/courses', CourseController::class);
 
 Route::resource('students', StudentController::class);
+
+Route::get('/exam-management', function () {
+    return view('exam.exam');
+});
