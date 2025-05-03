@@ -32,3 +32,6 @@ Route::get('/student-feedback', function () {
 Route::get('/exam-management', function () {
     return view('exam.exam');
 });
+Route::get('/fee-payment', function () {
+    return view('fee_payment.fee_payment');
+});

@@ -33,7 +33,7 @@
         <div id="pagination" class="mt-4 flex justify-between items-center"></div>
     </div>
 
-    <!-- Modal for Add/Edit -->
+    <!-- Modal for Add/Edit courses -->
     <div id="courseModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 id="modalTitle" class="text-xl font-bold mb-4">Add Course</h3>
@@ -46,9 +46,11 @@
                    class="w-full p-2 border rounded mb-2">
             <input type="text" id="courseCredit" placeholder="Credit" 
                    class="w-full p-2 border rounded mb-2">
+      <!-- Checkbox for active/inactive status -->               
             <label class="flex items-center mb-4">
                 <input type="checkbox" id="courseStatus" class="mr-2"> Active
             </label>
+     <!-- Save and Cancel Buttons -->        
             <div class="flex justify-end">
                 <button onclick="closeModal()" 
                         class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
@@ -60,7 +62,7 @@
 
     <script>
         let currentPage = 1;
-
+    // Open Modal: If 'id' is given, fill the form for editing, otherwise open blank form for adding
         function openModal(id = null) {
             if (id) {
                 $.get(`/courses/${id}`, function(course) {
@@ -83,13 +85,14 @@
             }
             $('#courseModal').removeClass('hidden');
         }
-
+    // Close the modal
         function closeModal() { $('#courseModal').addClass('hidden'); }
-
+    // Fetch and display courses with optional search and pagination
         function fetchCourses(page = 1, search = '') {
             $.get(`/courses?page=${page}&search=${search}`, function(response) {
                 let table = $('#courseTable');
                 table.html('');
+    // Fill table rows with course data            
                 response.data.data.forEach(course => {
                     table.append(`
                         <tr>
@@ -111,10 +114,10 @@
                 updatePagination(response.data);
             });
         }
-
+     // Update the pagination display
         function updatePagination(data) {
             let pagination = $('#pagination');
-            pagination.html('');
+            pagination.html('');                 // Clear previous pagination
             pagination.append(`
                 <span>Showing ${data.from || 0} to ${data.to || 0} of ${data.total} courses</span>
                 <div>
@@ -127,7 +130,7 @@
                 </div>
             `);
         }
-
+    // Save course: handles both Create and Update
         function saveCourse() {
             let id = $('#courseId').val();
             let courseData = {
@@ -143,10 +146,10 @@
                 Swal.fire('Error', 'All fields are required!', 'error');
                 return;
             }
-
+     // If ID exists, update; otherwise create
             let url = id ? `/courses/${id}` : '/courses';
             let method = id ? 'PUT' : 'POST';
-
+    // Make AJAX call to save data
             $.ajax({
                 url: url,
                 type: method,
@@ -160,7 +163,7 @@
                 }
             });
         }
-
+    // Delete a course by ID
         function deleteCourse(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -184,11 +187,11 @@
                 }
             });
         }
-
+    // On page load, fetch courses and setup search bar
         $(document).ready(function() {
             fetchCourses();
             $('#searchInput').on('keyup', function() {
-                fetchCourses(1, $(this).val());
+                fetchCourses(1, $(this).val());         // Fetch courses when typing in search
             });
         });
     </script>
