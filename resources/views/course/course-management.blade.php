@@ -17,7 +17,7 @@
         <table class="w-full border-collapse border border-gray-300">
             <thead>
                 <tr class="bg-gray-200">
-                    <th class="border p-2">ID</th>
+                    <th class="border p-2">#SL</th>
                     <th class="border p-2">Name</th>
                     <th class="border p-2">Code</th>
                     <th class="border p-2">Type</th>
@@ -93,10 +93,10 @@
                 let table = $('#courseTable');
                 table.html('');
     // Fill table rows with course data            
-                response.data.data.forEach(course => {
+                response.data.data.forEach((course,i) => {
                     table.append(`
                         <tr>
-                            <td class="border p-2 text-center">${course.id}</td>
+                            <td class="border p-2 text-center">${i + 1}</td>
                             <td class="border p-2 text-center">${course.name}</td>
                             <td class="border p-2 text-center">${course.code}</td>
                             <td class="border p-2 text-center">${course.type}</td>

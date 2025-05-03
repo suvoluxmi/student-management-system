@@ -17,7 +17,7 @@
         <table class="w-full border-collapse border border-gray-300">
             <thead>
                 <tr class="bg-green-100">
-                    <th class="border p-2">ID</th>
+                    <th class="border p-2">#SL</th>
                     <th class="border p-2">Name</th>
                     <th class="border p-2">Email</th>
                     <th class="border p-2">Phone</th>
@@ -95,10 +95,12 @@
             $.get(`/faculties?page=${page}&search=${search}`, function(response) {
                 let table = $('#facultyTable');
                 table.html('');
-                response.data.data.forEach(faculty => {
+        
+                response.data.data.forEach((faculty,i) => {
+                   
                     table.append(`
                         <tr>
-                            <td class="border p-2 text-center">${faculty.id}</td>
+                            <td class="border p-2 text-center">${i + 1}</td>
                             <td class="border p-2 text-center">${faculty.name}</td>
                             <td class="border p-2 text-center">${faculty.email}</td>
                             <td class="border p-2 text-center">${faculty.phone || '-'}</td>
