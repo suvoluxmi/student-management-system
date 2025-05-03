@@ -12,6 +12,11 @@
                         Course Management
                     </a>
                 </li>
+                <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">
+                    <a href="/student-feedback">
+                        Student Feedback
+                    </a>
+                </li>
                 <li class="mb-3 hover:bg-blue-700 p-2 rounded cursor-pointer">Logout</li>
             </ul>
         </div>

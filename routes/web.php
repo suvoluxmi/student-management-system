@@ -25,3 +25,6 @@ Route::get('/course-management', function () {
 Route::resource('/courses', CourseController::class);
 
 Route::resource('students', StudentController::class);
+Route::get('/student-feedback', function () {
+    return view('student_feedback.student_feedback');
+});
