@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeedbackController;
 
 Route::get('/', function () {
@@ -38,6 +39,7 @@ Route::get('/fee-payment', function () {
     return view('fee_payment.fee_payment');
 });
 
+Route::resource('exams', ExamController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('feedback', FeedbackController::class);
 
