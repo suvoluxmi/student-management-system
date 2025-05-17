@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FeedbackController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -38,4 +39,6 @@ Route::get('/fee-payment', function () {
 });
 
 Route::resource('payments', PaymentController::class);
+Route::resource('feedback', FeedbackController::class);
+
 
