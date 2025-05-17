@@ -2,20 +2,24 @@
 
 @section('content')
 <div class="p-6 bg-white rounded-lg shadow">
+      <!-- Header Section with Title, Search Box, and Add Button -->
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-bold text-blue-900">
             <i class="fas fa-user-graduate mr-2"></i> Student Management
         </h2>
+        <!-- Search Input -->
         <div class="relative">
             <input type="text" id="searchInput" placeholder="Search by name or ID..." 
                    class="p-2 pl-10 border rounded mr-4">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
         </div>
+        <!-- Add Student Button -->
         <button onclick="openModal()" 
                 class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
             <i class="fas fa-plus mr-2"></i> Add New Student
         </button>
     </div>
+    <!-- Table for Listing Students -->
     <div class="overflow-x-auto">
         <table class="w-full border-collapse bg-white shadow-md rounded-lg">
             <thead>
@@ -49,6 +53,7 @@
                    class="w-full p-2 pl-10 border rounded">
             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
         </div>
+        <!-- Input Fields with Icons -->
         <div class="relative mb-2">
             <input type="text" id="studentIdCard" placeholder="ID Card Number" 
                    class="w-full p-2 pl-10 border rounded">
@@ -69,10 +74,12 @@
                    class="w-full p-2 pl-10 border rounded">
             <i class="fas fa-phone absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
         </div>
+        <!-- Status Checkbox -->
         <label class="flex items-center mb-4">
             <input type="checkbox" id="studentStatus" class="mr-2" checked>
             <span><i class="fas fa-toggle-on mr-2 text-blue-500"></i> Active</span>
         </label>
+        <!-- Modal Buttons -->
         <div class="flex justify-end">
             <button onclick="closeModal()" 
                     class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2">
@@ -88,9 +95,10 @@
 
 <script>
     let currentPage = 1;
-
+// Show modal and optionally load student data for editing
     function openModal(id = null) {
         if (id) {
+            // Load student data via AJAX for editing
             $.get(`/students/${id}`, function(student) {
                 $('#modalTitle').html('<i class="fas fa-user-edit mr-2"></i> Edit Student');
                 $('#studentId').val(student.id);
@@ -102,6 +110,7 @@
                 $('#studentStatus').prop('checked', student.status);
             });
         } else {
+            // Reset modal for adding a new student
             $('#modalTitle').html('<i class="fas fa-user-plus mr-2"></i> Add Student');
             $('#studentId').val('');
             $('#studentName').val('');
@@ -115,7 +124,7 @@
     }
 
     function closeModal() { $('#studentModal').addClass('hidden'); }
-
+// Fetch students with pagination and optional search
     function fetchStudents(page = 1, search = '') {
         $.get(`/students?page=${page}&search=${search}`, function(response) {
             let table = $('#studentTable');
@@ -144,7 +153,7 @@
             updatePagination(response.data);
         });
     }
-
+    // Update pagination controls
     function updatePagination(data) {
         let pagination = $('#pagination');
         pagination.html('');
@@ -164,7 +173,7 @@
             </div>
         `);
     }
-
+ // Save student data (create or update)
     function saveStudent() {
         let id = $('#studentId').val();
         let studentData = {
@@ -176,16 +185,16 @@
             status: $('#studentStatus').is(':checked') ? 1 : 0,
             _token: '{{ csrf_token() }}'
         };
-
+ // Validation
         if (!studentData.name || !studentData.id_card_number || !studentData.semester || 
             !studentData.faculty || !studentData.phone_number) {
             Swal.fire('Error', 'All fields are required!', 'error');
             return;
         }
-
+// Determine URL and method
         let url = id ? `/students/${id}` : '/students';
         let method = id ? 'PUT' : 'POST';
-
+// Send AJAX request
         $.ajax({
             url: url,
             type: method,
@@ -199,7 +208,7 @@
             }
         });
     }
-
+// Delete student after confirmation
     function deleteStudent(id) {
         Swal.fire({
             title: 'Are you sure?',
@@ -223,7 +232,7 @@
             }
         });
     }
-
+// On document ready: fetch initial student list and bind search input
     $(document).ready(function() {
         fetchStudents();
         $('#searchInput').on('keyup', function() {
