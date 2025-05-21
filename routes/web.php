@@ -7,8 +7,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
@@ -42,5 +43,9 @@ Route::get('/fee-payment', function () {
 Route::resource('exams', ExamController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('feedback', FeedbackController::class);
+Route::get('/dashboard', function () {
+    return view('home-dashboard');
+});
+Route::resource('/home-dashboard', DashboardController::class);
 
 
