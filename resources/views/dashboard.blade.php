@@ -24,7 +24,7 @@
             @include('shared.navbar')
             
             <!-- Content Area -->
-            <div class="p-5">
+            <div class="ml-64 p-5">
                 @yield('content')
             </div>
         </div>

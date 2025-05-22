@@ -1,30 +1,30 @@
-@extends("dashboard")
+@extends('dashboard')
 
-@section("content")
+@section('content')
 <div class="bg-gray-100 py-6">
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold mb-4 text-blue-700">Exam and Grading Management</h2>
 
         <!-- Search Bar -->
         <div class="mb-4 flex justify-between items-center">
-            <input type="text" id="searchInput" placeholder="Search by exam title..." 
-                   class="w-1/3 p-2 border rounded">
+            <input type="text" id="searchInput" placeholder="Search by exam title or subject..." 
+                   class="w-1/3 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
             <button onclick="openModal()" 
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add New Exam</button>
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-200">Add New Exam</button>
         </div>
 
         <!-- Exam Table -->
         <table class="w-full border-collapse border border-gray-300">
             <thead>
                 <tr class="bg-blue-100">
-                    <th class="border p-2">#SL</th>
-                    <th class="border p-2">Exam Title</th>
-                    <th class="border p-2">Subject</th>
-                    <th class="border p-2">Date</th>
-                    <th class="border p-2">Total Marks</th>
-                    <th class="border p-2">Passing Marks</th>
-                    <th class="border p-2">Status</th>
-                    <th class="border p-2">Actions</th>
+                    <th class="border p-2 text-center">SL</th>
+                    <th class="border p-2 text-center">Exam Title</th>
+                    <th class="border p-2 text-center">Subject</th>
+                    <th class="border p-2 text-center">Date</th>
+                    <th class="border p-2 text-center">Total Marks</th>
+                    <th class="border p-2 text-center">Passing Marks</th>
+                    <th class="border p-2 text-center">Status</th>
+                    <th class="border p-2 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody id="examTable"></tbody>
@@ -38,20 +38,53 @@
     <div id="examModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 id="modalTitle" class="text-xl font-bold mb-4 text-blue-700">Add Exam</h3>
-            <input type="hidden" id="examId">
-            <input type="text" id="examTitle" placeholder="Exam Title" class="w-full p-2 border rounded mb-2">
-            <input type="text" id="examSubject" placeholder="Subject" class="w-full p-2 border rounded mb-2">
-            <input type="date" id="examDate" class="w-full p-2 border rounded mb-2">
-            <input type="number" id="examTotalMarks" placeholder="Total Marks" class="w-full p-2 border rounded mb-2">
-            <input type="number" id="examPassingMarks" placeholder="Passing Marks" class="w-full p-2 border rounded mb-2">
-            <label class="flex items-center mb-4">
-                <input type="checkbox" id="examStatus" class="mr-2" checked> Active
-            </label>
-            <div class="flex justify-end">
-                <button onclick="closeModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2">Cancel</button>
-                <button onclick="saveExam()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Save</button>
-            </div>
+            <form id="examForm">
+                <input type="hidden" id="examId" name="examId">
+                <input type="text" id="examTitle" name="title" placeholder="Exam Title" 
+                       class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <input type="text" id="examSubject" name="subject" placeholder="Subject" 
+                       class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <input type="date" id="examDate" name="date" 
+                       class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <input type="number" id="examTotalMarks" name="total_marks" placeholder="Total Marks" 
+                       class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <input type="number" id="examPassingMarks" name="passing_marks" placeholder="Passing Marks" 
+                       class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <label class="flex items-center mb-4">
+                    <input type="checkbox" id="examStatus" name="status" class="mr-2" checked> Active
+                </label>
+                <div class="flex justify-end">
+                    <button type="button" onclick="closeModal()" 
+                            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2 transition duration-200">Cancel</button>
+                    <button type="button" onclick="saveExam()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-200">Save</button>
+                </div>
+            </form>
         </div>
+    </div>
+
+    <div class="bg-white p-5 my-8">
+        <h2 class="text-xl font-bold mb-4 text-blue-700">BAUST Grading System</h2>
+        <table class="w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-blue-100">
+                    <th class="border p-2">Grade</th>
+                    <th class="border p-2">Grade Point</th>
+                    <th class="border p-2">Marks Range (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="border p-2">A</td><td class="border p-2">4.0</td><td class="border p-2">90 - 100</td></tr>
+                <tr><td class="border p-2">A-</td><td class="border p-2">3.7</td><td class="border p-2">85 - 89</td></tr>
+                <tr><td class="border p-2">B+</td><td class="border p-2">3.3</td><td class="border p-2">80 - 84</td></tr>
+                <tr><td class="border p-2">B</td><td class="border p-2">3.0</td><td class="border p-2">75 - 79</td></tr>
+                <tr><td class="border p-2">B-</td><td class="border p-2">2.7</td><td class="border p-2">70 - 74</td></tr>
+                <tr><td class="border p-2">C+</td><td class="border p-2">2.3</td><td class="border p-2">65 - 69</td></tr>
+                <tr><td class="border p-2">C</td><td class="border p-2">2.0</td><td class="border p-2">60 - 64</td></tr>
+                <tr><td class="border p-2">D</td><td class="border p-2">1.0</td><td class="border p-2">50 - 59</td></tr>
+                <tr><td class="border p-2">F</td><td class="border p-2">0.0</td><td class="border p-2">0 - 49</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <script>
@@ -59,74 +92,95 @@
 
         function openModal(id = null) {
             if (id) {
-                $.get(`/exams/${id}`, function(exam) {
-                    $('#modalTitle').text('Edit Exam');
-                    $('#examId').val(exam.id);
-                    $('#examTitle').val(exam.title);
-                    $('#examSubject').val(exam.subject);
-                    $('#examDate').val(exam.date);
-                    $('#examTotalMarks').val(exam.total_marks);
-                    $('#examPassingMarks').val(exam.passing_marks);
-                    $('#examStatus').prop('checked', exam.status);
+                $.ajax({
+                    url: `/exams/${id}`,
+                    type: 'GET',
+                    success: function(exam) {
+                        $('#modalTitle').text('Edit Exam');
+                        $('#examId').val(exam.id);
+                        $('#examTitle').val(exam.title);
+                        $('#examSubject').val(exam.subject);
+                        $('#examDate').val(exam.date);
+                        $('#examTotalMarks').val(exam.total_marks);
+                        $('#examPassingMarks').val(exam.passing_marks);
+                        $('#examStatus').prop('checked', exam.status);
+                        $('#examModal').removeClass('hidden');
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: xhr.responseJSON?.message || 'Failed to fetch exam details',
+                        });
+                    }
                 });
             } else {
                 $('#modalTitle').text('Add Exam');
+                $('#examForm')[0].reset();
                 $('#examId').val('');
-                $('#examTitle').val('');
-                $('#examSubject').val('');
-                $('#examDate').val('');
-                $('#examTotalMarks').val('');
-                $('#examPassingMarks').val('');
                 $('#examStatus').prop('checked', true);
+                $('#examModal').removeClass('hidden');
             }
-            $('#examModal').removeClass('hidden');
         }
 
         function closeModal() {
             $('#examModal').addClass('hidden');
+            $('#examForm')[0].reset();
         }
 
         function fetchExams(page = 1, search = '') {
-    $.get(`/exams?page=${page}&search=${search}`, function(response) {
-        let table = $('#examTable');
-        table.html('');
+            $.ajax({
+                url: `/exams?page=${page}&search=${search}`,
+                type: 'GET',
+                success: function(response) {
+                    let table = $('#examTable');
+                    table.empty();
 
-        const exams = response.data.data; // exam array
-        exams.forEach((exam, index) => {
-            table.append(`
-                <tr>
-                    <td class="border p-2 text-center">${index + 1}</td>
-                    <td class="border p-2 text-center">${exam.title}</td>
-                    <td class="border p-2 text-center">${exam.subject}</td>
-                    <td class="border p-2 text-center">${exam.date}</td>
-                    <td class="border p-2 text-center">${exam.total_marks}</td>
-                    <td class="border p-2 text-center">${exam.passing_marks}</td>
-                    <td class="border p-2 text-center">${exam.status ? 'Active' : 'Inactive'}</td>
-                    <td class="border p-2 text-center">
-                        <button onclick="openModal(${exam.id})" class="bg-yellow-500 text-white px-2 py-1 rounded mr-2">Edit</button>
-                        <button onclick="deleteExam(${exam.id})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                    </td>
-                </tr>
-            `);
-        });
+                    const exams = response.data.data;
+                    exams.forEach((exam, index) => {
+                        table.append(`
+                            <tr>
+                                <td class="border p-2 text-center">${(page - 1) * 10 + index + 1}</td>
+                                <td class="border p-2 text-center">${exam.title}</td>
+                                <td class="border p-2 text-center">${exam.subject}</td>
+                                <td class="border p-2 text-center">${exam.date}</td>
+                                <td class="border p-2 text-center">${exam.total_marks}</td>
+                                <td class="border p-2 text-center">${exam.passing_marks}</td>
+                                <td class="border p-2 text-center">${exam.status ? 'Active' : 'Inactive'}</td>
+                                <td class="border p-2 text-center">
+                                    <button onclick="openModal(${exam.id})" 
+                                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded mr-2 transition duration-200">Edit</button>
+                                    <button onclick="deleteExam(${exam.id})" 
+                                            class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded transition duration-200">Delete</button>
+                                </td>
+                            </tr>
+                        `);
+                    });
 
-        updatePagination(response.data);
-    });
-}
-
+                    updatePagination(response.data);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: xhr.responseJSON?.message || 'Failed to fetch exams',
+                    });
+                }
+            });
+        }
 
         function updatePagination(data) {
             let pagination = $('#pagination');
-            pagination.html('');
+            pagination.empty();
             pagination.append(`
                 <span>Showing ${data.from || 0} to ${data.to || 0} of ${data.total} exams</span>
                 <div>
                     <button ${data.prev_page_url ? '' : 'disabled'}
                             onclick="fetchExams(${data.current_page - 1}, $('#searchInput').val())"
-                            class="bg-gray-300 px-4 py-2 rounded mr-2">Previous</button>
+                            class="bg-gray-300 px-4 py-2 rounded mr-2 hover:bg-gray-400 transition duration-200 ${data.prev_page_url ? '' : 'opacity-50 cursor-not-allowed'}">Previous</button>
                     <button ${data.next_page_url ? '' : 'disabled'}
                             onclick="fetchExams(${data.current_page + 1}, $('#searchInput').val())"
-                            class="bg-gray-300 px-4 py-2 rounded">Next</button>
+                            class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition duration-200 ${data.next_page_url ? '' : 'opacity-50 cursor-not-allowed'}">Next</button>
                 </div>
             `);
         }
@@ -143,24 +197,25 @@
                 _token: '{{ csrf_token() }}'
             };
 
-            if (!examData.title || !examData.subject || !examData.date || !examData.total_marks || !examData.passing_marks) {
-                Swal.fire('Error', 'All fields are required!', 'error');
-                return;
-            }
-
-            let url = id ? `/exams/${id}` : '/exams';
-            let method = id ? 'PUT' : 'POST';
-
             $.ajax({
-                url: url,
-                type: method,
+                url: id ? `/exams/${id}` : '/exams',
+                type: id ? 'PUT' : 'POST',
                 data: examData,
-                success: function() {
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: id ? 'Exam updated successfully!' : 'Exam created successfully!',
+                    });
                     closeModal();
                     fetchExams(currentPage, $('#searchInput').val());
                 },
                 error: function(xhr) {
-                    Swal.fire('Error', xhr.responseJSON?.message || 'Something went wrong!', 'error');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: xhr.responseJSON?.message || 'Something went wrong!',
+                    });
                 }
             });
         }
@@ -180,9 +235,20 @@
                         url: `/exams/${id}`,
                         type: 'DELETE',
                         data: { _token: '{{ csrf_token() }}' },
-                        success: function() {
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Deleted!',
+                                text: 'Exam has been deleted.',
+                            });
                             fetchExams(currentPage, $('#searchInput').val());
-                            Swal.fire('Deleted!', 'Exam has been deleted.', 'success');
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: xhr.responseJSON?.message || 'Failed to delete exam',
+                            });
                         }
                     });
                 }
@@ -192,6 +258,7 @@
         $(document).ready(function() {
             fetchExams();
             $('#searchInput').on('keyup', function() {
+                currentPage = 1;
                 fetchExams(1, $(this).val());
             });
         });

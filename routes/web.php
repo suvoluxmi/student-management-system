@@ -7,8 +7,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
@@ -42,5 +45,18 @@ Route::get('/fee-payment', function () {
 Route::resource('exams', ExamController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('feedback', FeedbackController::class);
+Route::get('/dashboard', function () {
+    return view('home-dashboard');
+});
+});
+
+
+
+Route::get('/', function () {
+    return view('login');
+});
+Route::get('/home', [DashboardController::class,"getCount"]);
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
 
