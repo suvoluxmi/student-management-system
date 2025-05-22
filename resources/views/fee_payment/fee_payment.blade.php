@@ -98,10 +98,10 @@
             $.get(`/payments?page=${page}&search=${search}`, function(response) {
                 let table = $('#paymentTable');
                 table.html('');
-                response.data.data.forEach((payment) => {
+                response.data.data.forEach((payment,index) => {
                     table.append(`
                         <tr>
-                            <td class="border p-2 text-center">${payment.id}</td>
+                            <td class="border p-2 text-center">${index + 1}</td>
                             <td class="border p-2 text-center">${payment.student_name}</td>
                             <td class="border p-2 text-center">${payment.fee_type}</td>
                             <td class="border p-2 text-center">${payment.amount}</td>
