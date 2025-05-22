@@ -35,4 +35,34 @@ class PaymentController extends Controller
         Payment::create($request->all());
         return response()->json(['message' => 'Payment created successfully']);
     }
+    public function show($id)
+    {
+        $payment = Payment::findOrFail($id);
+        return response()->json($payment);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'student_name' => 'required|string',
+            'fee_type' => 'required|string',
+            'amount' => 'required|numeric',
+            'payment_date' => 'required|date',
+            'method' => 'required|string',
+            'status' => 'required|boolean',
+        ]);
+
+        $payment = Payment::findOrFail($id);
+        $payment->update($request->all());
+
+        return response()->json(['message' => 'Payment updated successfully']);
+    }
+
+    public function destroy($id)
+    {
+        $payment = Payment::findOrFail($id);
+        $payment->delete();
+
+        return response()->json(['message' => 'Payment deleted successfully']);
+    }
 }
