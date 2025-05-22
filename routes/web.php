@@ -8,8 +8,10 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/dashboard', function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
@@ -46,6 +48,15 @@ Route::resource('feedback', FeedbackController::class);
 Route::get('/dashboard', function () {
     return view('home-dashboard');
 });
-Route::resource('/home-dashboard', DashboardController::class);
+});
+
+
+
+Route::get('/', function () {
+    return view('login');
+});
+Route::get('/home', [DashboardController::class,"getCount"]);
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
 

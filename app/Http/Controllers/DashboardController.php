@@ -12,7 +12,7 @@ use App\Models\Course;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function getCount()
     {
         $data = [
             'total_students' => Student::count(),

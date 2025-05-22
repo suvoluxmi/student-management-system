@@ -90,7 +90,7 @@
     <script>
         function fetchDashboardData() {
             $.ajax({
-                url: '/home-dashboard',
+                url: '/home',
                 type: 'GET',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
