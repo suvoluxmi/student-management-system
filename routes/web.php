@@ -58,5 +58,6 @@ Route::get('/', function () {
 Route::get('/home', [DashboardController::class,"getCount"]);
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
