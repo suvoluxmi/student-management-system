@@ -74,15 +74,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td class="border p-2">A</td><td class="border p-2">4.0</td><td class="border p-2">90 - 100</td></tr>
-                <tr><td class="border p-2">A-</td><td class="border p-2">3.7</td><td class="border p-2">85 - 89</td></tr>
-                <tr><td class="border p-2">B+</td><td class="border p-2">3.3</td><td class="border p-2">80 - 84</td></tr>
-                <tr><td class="border p-2">B</td><td class="border p-2">3.0</td><td class="border p-2">75 - 79</td></tr>
-                <tr><td class="border p-2">B-</td><td class="border p-2">2.7</td><td class="border p-2">70 - 74</td></tr>
-                <tr><td class="border p-2">C+</td><td class="border p-2">2.3</td><td class="border p-2">65 - 69</td></tr>
-                <tr><td class="border p-2">C</td><td class="border p-2">2.0</td><td class="border p-2">60 - 64</td></tr>
-                <tr><td class="border p-2">D</td><td class="border p-2">1.0</td><td class="border p-2">50 - 59</td></tr>
-                <tr><td class="border p-2">F</td><td class="border p-2">0.0</td><td class="border p-2">0 - 49</td></tr>
+                <tr><td class="border p-2">A+</td><td class="border p-2">4.0</td><td class="border p-2">80 - 100</td></tr>
+                <tr><td class="border p-2">A</td><td class="border p-2">3.75</td><td class="border p-2">75 - 80</td></tr>
+                <tr><td class="border p-2">A-</td><td class="border p-2">3.50</td><td class="border p-2">70 - 74</td></tr>
+                <tr><td class="border p-2">B+</td><td class="border p-2">3.25</td><td class="border p-2">65 - 69</td></tr>
+                <tr><td class="border p-2">B</td><td class="border p-2">3.00</td><td class="border p-2">60 - 64</td></tr>
+                <tr><td class="border p-2">B-</td><td class="border p-2">2.75</td><td class="border p-2">55 - 59</td></tr>
+                <tr><td class="border p-2">C+</td><td class="border p-2">2.50</td><td class="border p-2">50 - 54</td></tr>
+                <tr><td class="border p-2">C</td><td class="border p-2">2.25</td><td class="border p-2">45 - 49</td></tr>
+                <tr><td class="border p-2">D</td><td class="border p-2">2.00</td><td class="border p-2">40 - 44/td></tr>
+                <tr><td class="border p-2">F</td><td class="border p-2">0.0</td><td class="border p-2">0 - 40</td></tr>
             </tbody>
         </table>
     </div>
